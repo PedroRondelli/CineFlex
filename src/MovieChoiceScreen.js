@@ -18,6 +18,8 @@ export default function MovieChoiceScreen() {
     }, [])
 
     return (
+        <>
+        <SelectYourMovie>Selecione o filme</SelectYourMovie>
         <MoviesScroll>
             {receivedMovies.map((objectOfMovie) => {
                 return (
@@ -29,6 +31,7 @@ export default function MovieChoiceScreen() {
                 )
             })}
         </MoviesScroll>
+        </>
     )
 }
 
@@ -38,4 +41,13 @@ const MoviesScroll = styled.div`
     flex-wrap: wrap;
 
     width: 90vw;
+`
+const SelectYourMovie = styled.p`
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0.04em;
+    margin: 50px 0;
+
 `

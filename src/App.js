@@ -1,18 +1,24 @@
 import styled from 'styled-components';
 import GlobalStyle from './globalstyled';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MovieChoiceScreen from './MovieChoiceScreen';
+import SessionsScreen from './SessionsScreen';
 
 
 
 
 export default function App() {
     return (
-        <ScreenContainer>
-            <Header><h1>CINEFLEX</h1></Header>
-            <p>Selecione o filme</p>
-            <MovieChoiceScreen/>
+        <BrowserRouter>
+            <ScreenContainer>
+                <Header><h1>CINEFLEX</h1></Header>
+                <Routes>
+                   <Route path="/" element={<MovieChoiceScreen />}/>
+                   <Route path="/sessoes" element={<SessionsScreen />}/>
+                </Routes>
+            </ScreenContainer>
             <GlobalStyle />
-        </ScreenContainer>
+        </BrowserRouter>
     )
 }
 
@@ -52,16 +58,6 @@ const ScreenContainer = styled.div`
     margin: 0px;
     padding: 0px;
     padding-top: 67px;
-
-    p{
-        font-family: Roboto;
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 28px;
-        letter-spacing: 0.04em;
-        margin: 50px 0;
-    }
-
 `
 
 

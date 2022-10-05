@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 
 export default function MovieOutDoor({ banner, title }) {
 
     return (
-        <Outdoor >
-            <img src={banner} alt={title} />
-        </Outdoor>
+        <Link to="/sessoes">
+            <Outdoor >
+                <img src={banner} alt={title} />
+            </Outdoor>
+        </Link>
     )
 }
 
