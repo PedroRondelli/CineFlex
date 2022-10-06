@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
-export default function DaySessions({ id, date, showtimes, weekday }) {
+export default function DaySessions({ id, date, showtimes, weekday,title }) {
+    
     return (
         <>
             <Day>{weekday}-{date}</Day>

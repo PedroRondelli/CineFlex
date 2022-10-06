@@ -4,9 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MovieChoiceScreen from './MovieChoiceScreen';
 import SessionsScreen from './SessionsScreen';
 
-
-
-
 export default function App() {
     return (
         <BrowserRouter>
@@ -21,7 +18,6 @@ export default function App() {
         </BrowserRouter>
     )
 }
-
 
 const Header = styled.div`
     position:fixed;
@@ -47,6 +43,7 @@ const Header = styled.div`
 
 
 `;
+
 const ScreenContainer = styled.div`
     width: 100vw;
     min-height: 100vh;
@@ -58,7 +55,7 @@ const ScreenContainer = styled.div`
     margin: 0px;
     padding: 0px;
     padding-top: 67px;
-`
+`;
 
 
 

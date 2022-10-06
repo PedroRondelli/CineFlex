@@ -7,6 +7,7 @@ import DaySessions from "./DaySessions"
 export default function SessionsScreen() {
   const { idFilme } = useParams()
   const[receivedSessions, setReceivedSessions]=useState({})
+  console.log(receivedSessions)
   const MutableObject= useRef([])
   let daysOfWeek=MutableObject.current
   useEffect(()=>{
@@ -28,10 +29,15 @@ export default function SessionsScreen() {
             showtimes={objectOfDay.showtimes}
             date={objectOfDay.date}
             id={objectOfDay.id}
-
+            title={receivedSessions.title}
           />
         )}
-        {/*footer contendo */}
+        <Footer>
+        <MiniOutdoor>
+          <img src={receivedSessions.posterURL} alt={receivedSessions.title}/>
+        </MiniOutdoor>
+        <p>{receivedSessions.title}</p>
+        </Footer>
       </SessionOptions>
 
     </>
@@ -50,3 +56,50 @@ const SelectYourSession = styled.p`
 const SessionOptions = styled.div`
     width: 90vw;
 `
+const Footer = styled.div`
+  height: 117px;
+  width: 100vw;
+  display:flex;
+  align-items:center;
+
+  border: 1px solid #dfe6ed;
+
+  background-color: #dfe6ed;
+
+  position: fixed;
+  bottom:0;
+  left:0;
+
+
+  p{
+      font-family: Roboto;
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 30px;
+      letter-spacing: 0em;
+      
+      color: #293845;
+    }
+`
+const MiniOutdoor = styled.div`
+    height: 89px;
+    width: 64px;
+    box-sizing:border-box;
+
+    background-color: white;
+
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    
+    padding: 5px;
+    border-radius: 3px;
+    margin:10px;
+
+    img{
+        width:100%;
+    }
+
+    cursor: pointer;
+
+`
+
+
