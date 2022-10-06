@@ -1,19 +1,22 @@
 import styled from "styled-components"
 
-export default function DaySessions() {
-    return(
+export default function DaySessions({ id, date, showtimes, weekday }) {
+    return (
         <>
-        <Day>Quinta-feira - 24/06/2021</Day>
-        <Hours>
-            <Session>15:00</Session>
-            <Session>15:00</Session>
-            <Session>15:00</Session>
-        </Hours>
+            <Day>{weekday}-{date}</Day>
+            <Hours>
+                {showtimes.map((show) =>
+                    <Session
+                        key={show.id}
+                        id={show.id}
+                    >{show.name}
+                    </Session>)}
+            </Hours>
         </>
     )
 }
 
-const Day =styled.p`
+const Day = styled.p`
     font-family: Roboto;
     font-size: 20px;
     font-weight: 400;
@@ -24,13 +27,13 @@ const Day =styled.p`
     margin:8px;
 
 `
-const Hours=styled.div`
+const Hours = styled.div`
     display: flex;
     flex-wrap: wrap;
 
     
 `
-const Session=styled.div`
+const Session = styled.div`
     background: #E8833A;
 
     font-family: Roboto;

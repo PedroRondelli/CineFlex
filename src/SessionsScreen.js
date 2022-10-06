@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import DaySessions from "./DaySessions"
@@ -7,21 +7,30 @@ import DaySessions from "./DaySessions"
 export default function SessionsScreen() {
   const { idFilme } = useParams()
   const[receivedSessions, setReceivedSessions]=useState({})
-
+  const MutableObject= useRef([])
+  let daysOfWeek=MutableObject.current
   useEffect(()=>{
     const promise=axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
     promise.then((resp)=> {
-      console.log(resp.data)
+      MutableObject.current = resp.data.days
       setReceivedSessions(resp.data)
     })
   },[])
+  
   return (
     <>
       <SelectYourSession>Selecione o Horário</SelectYourSession>
       <SessionOptions>
-        <DaySessions />
-        <DaySessions />
-        <DaySessions />
+        {daysOfWeek.map((objectOfDay)=> 
+          <DaySessions
+            key={objectOfDay.id}
+            weekday={objectOfDay.weekday}
+            showtimes={objectOfDay.showtimes}
+            date={objectOfDay.date}
+            id={objectOfDay.id}
+
+          />
+        )}
         {/*footer contendo */}
       </SessionOptions>
 
