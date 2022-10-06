@@ -22,7 +22,7 @@ const SelectYourSession = styled.p`
     font-weight: 400;
     line-height: 28px;
     letter-spacing: 0.04em;
-    margin: 50px 0;
+    margin: 50px 0 25px 0;
 
 `
 const SessionOptions=styled.div`

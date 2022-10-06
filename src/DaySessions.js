@@ -21,16 +21,16 @@ const Day =styled.p`
     letter-spacing: 0.02em;
     text-align: left;
 
-    margin:10px;
+    margin:8px;
 
 `
 const Hours=styled.div`
     display: flex;
     flex-wrap: wrap;
 
-    margin: 10px;
+    
 `
-const Session=styled.button`
+const Session=styled.div`
     background: #E8833A;
 
     font-family: Roboto;
@@ -43,7 +43,14 @@ const Session=styled.button`
 
     width: 82px;
     height: 43px;
+    margin: 18px 8px 18px 8px;
 
     border-radius: 3px;
+
+    cursor:pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 `
