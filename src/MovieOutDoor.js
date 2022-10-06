@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 
-export default function MovieOutDoor({ banner, title }) {
+export default function MovieOutDoor({ banner, title, id }) {
 
     return (
-        <Link to="/sessoes">
+        <Link to={`/sessoes/${id}`}>
             <Outdoor >
                 <img src={banner} alt={title} />
             </Outdoor>

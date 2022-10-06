@@ -27,6 +27,7 @@ export default function MovieChoiceScreen() {
                         key={objectOfMovie.id}
                         banner={objectOfMovie.posterURL}
                         title={objectOfMovie.title}
+                        id={objectOfMovie.id}
                     />
                 )
             })}

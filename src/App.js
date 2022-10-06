@@ -14,7 +14,7 @@ export default function App() {
                 <Header><h1>CINEFLEX</h1></Header>
                 <Routes>
                    <Route path="/" element={<MovieChoiceScreen />}/>
-                   <Route path="/sessoes" element={<SessionsScreen />}/>
+                   <Route path="/sessoes/:idFilme" element={<SessionsScreen />}/>
                 </Routes>
             </ScreenContainer>
             <GlobalStyle />

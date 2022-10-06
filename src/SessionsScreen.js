@@ -1,19 +1,32 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import DaySessions from "./DaySessions"
 
 export default function SessionsScreen() {
-  return(
+  const { idFilme } = useParams()
+  const[receivedSessions, setReceivedSessions]=useState({})
+
+  useEffect(()=>{
+    const promise=axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
+    promise.then((resp)=> {
+      console.log(resp.data)
+      setReceivedSessions(resp.data)
+    })
+  },[])
+  return (
     <>
-    <SelectYourSession>Selecione o Horário</SelectYourSession>
-    <SessionOptions>
-        <DaySessions/>
-        <DaySessions/>
-        <DaySessions/>
+      <SelectYourSession>Selecione o Horário</SelectYourSession>
+      <SessionOptions>
+        <DaySessions />
+        <DaySessions />
+        <DaySessions />
         {/*footer contendo */}
-    </SessionOptions>
+      </SessionOptions>
 
     </>
-  )   
+  )
 }
 
 const SelectYourSession = styled.p`
@@ -25,6 +38,6 @@ const SelectYourSession = styled.p`
     margin: 50px 0 25px 0;
 
 `
-const SessionOptions=styled.div`
+const SessionOptions = styled.div`
     width: 90vw;
 `
