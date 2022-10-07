@@ -11,7 +11,6 @@ export default function MovieChoiceScreen() {
     useEffect(() => {
         const promise = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies")
         promise.then((resp) => {
-            console.log(resp.data)
             setReceivedMovies(resp.data)
         })
 

@@ -1,17 +1,21 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export default function DaySessions({ id, date, showtimes, weekday,title }) {
+export default function DaySessions({ id, date, showtimes, weekday, title }) {
     
     return (
         <>
             <Day>{weekday}-{date}</Day>
             <Hours>
                 {showtimes.map((show) =>
-                    <Session
-                        key={show.id}
-                        id={show.id}
-                    >{show.name}
-                    </Session>)}
+                    <Link to={`/assentos/${show.id}`}>
+                        <Session
+                            key={show.id}
+                            id={show.id}
+                        >{show.name}
+                        </Session>
+                    </Link>
+                )}
             </Hours>
         </>
     )
@@ -26,13 +30,15 @@ const Day = styled.p`
     text-align: left;
 
     margin:8px;
-
 `
 const Hours = styled.div`
     display: flex;
     flex-wrap: wrap;
 
+    a{
+        text-decoration: none;
     
+    }
 `
 const Session = styled.div`
     background: #E8833A;
@@ -56,5 +62,4 @@ const Session = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
 `

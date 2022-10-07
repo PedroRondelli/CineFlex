@@ -7,9 +7,9 @@ import DaySessions from "./DaySessions"
 export default function SessionsScreen() {
   const { idFilme } = useParams()
   const[receivedSessions, setReceivedSessions]=useState({})
-  console.log(receivedSessions)
   const MutableObject= useRef([])
   let daysOfWeek=MutableObject.current
+  console.log(daysOfWeek)
   useEffect(()=>{
     const promise=axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
     promise.then((resp)=> {
@@ -70,7 +70,6 @@ const Footer = styled.div`
   bottom:0;
   left:0;
 
-
   p{
       font-family: Roboto;
       font-size: 26px;
@@ -97,9 +96,6 @@ const MiniOutdoor = styled.div`
     img{
         width:100%;
     }
-
-    cursor: pointer;
-
 `
 
 
