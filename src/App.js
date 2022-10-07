@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import GlobalStyle from './globalstyled';
+import styled from 'styled-components';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MovieChoiceScreen from './MovieChoiceScreen';
 import SessionsScreen from './SessionsScreen';

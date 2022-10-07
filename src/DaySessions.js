@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 export default function DaySessions({ id, date, showtimes, weekday, title }) {
     
@@ -31,6 +31,7 @@ const Day = styled.p`
 
     margin:8px;
 `
+
 const Hours = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -40,6 +41,7 @@ const Hours = styled.div`
     
     }
 `
+
 const Session = styled.div`
     background: #E8833A;
 

@@ -1,7 +1,7 @@
+import styled from "styled-components"
 import axios from "axios"
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
-import styled from "styled-components"
 import DaySessions from "./DaySessions"
 
 export default function SessionsScreen() {
@@ -9,7 +9,7 @@ export default function SessionsScreen() {
   const[receivedSessions, setReceivedSessions]=useState({})
   const MutableObject= useRef([])
   let daysOfWeek=MutableObject.current
-  console.log(daysOfWeek)
+  
   useEffect(()=>{
     const promise=axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
     promise.then((resp)=> {
@@ -39,7 +39,6 @@ export default function SessionsScreen() {
         <p>{receivedSessions.title}</p>
         </Footer>
       </SessionOptions>
-
     </>
   )
 }
@@ -53,9 +52,11 @@ const SelectYourSession = styled.p`
     margin: 50px 0 25px 0;
 
 `
+
 const SessionOptions = styled.div`
     width: 90vw;
 `
+
 const Footer = styled.div`
   height: 117px;
   width: 100vw;
@@ -80,6 +81,7 @@ const Footer = styled.div`
       color: #293845;
     }
 `
+
 const MiniOutdoor = styled.div`
     height: 89px;
     width: 64px;

@@ -2,15 +2,17 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
+import IndividualSeat from "./IndividualSeat"
 
 const LegendSeats = [
-    { name: "Selecionado", color: "#8dd7cf" },
-    {name:"Disponível",color:"#c3cfd9"},
-    {name:"Indisponível",color:"#f8c838"}]
+    { color: "selected", avaible: null,text:"Selecionado" },
+    { color: "1", avaible: true,text:"Disponível" },
+    { color: "2", avaible: false,text:"Indisponível" }]
 
 export default function ChairsScreen() {
     const { idSessao } = useParams()
     const [session, setSession] = useState([])
+
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`)
@@ -28,9 +30,13 @@ export default function ChairsScreen() {
         <>
             <SelectYourSeat>{"Selecione o(s) assento(s)"}</SelectYourSeat>
             <SeatsPanel>
-                {session.seats.map((s) => <Seat key={s.id}>{s.name}</Seat>)}
+                {session.seats.map((s) => <IndividualSeat key={s.id} avaible={s.isAvailable} id={s.id} name={s.name} />)}
                 <ColorLegend>
-                    {LegendSeats.map(()=><Seat  />)}
+                    {LegendSeats.map((l) => 
+                    <ItemOfLegend>
+                        <IndividualSeat key={l.color} id={l.color} avaible={l.avaible} />
+                        <p>{l.text}</p>
+                    </ItemOfLegend>)}
                 </ColorLegend>
             </SeatsPanel>
 
@@ -45,6 +51,7 @@ const SelectYourSeat = styled.p`
     letter-spacing: 0.04em;
     margin: 50px 0;
 `
+
 const SeatsPanel = styled.div`
     display:flex;
     justify-content:center;
@@ -52,35 +59,28 @@ const SeatsPanel = styled.div`
     flex-wrap:wrap;
     width: 90vw;
 `
-const Seat = styled.div`
-    display: flex;
-    justify-content:center;
-    align-items:center;
 
-    height: 26px;
-    width: 26px;
-
-    margin: 4px;
-   
-    background-color: #c3cfd9;
-
-    border-radius: 12px;
-    border: 1px solid #808F9D;
-
-    font-family: Roboto;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-
-
-
-    cursor: pointer;
-`
 const ColorLegend = styled.div`
     display:flex;
     justify-content:space-around;
     align-items: center;
     width: 90vw;
     margin: 8px;
+`
+const ItemOfLegend = styled.div`
+    width: min-content;
+    height: min-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: -0.013em;
+    
+
 `

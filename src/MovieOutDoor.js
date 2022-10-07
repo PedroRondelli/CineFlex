@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 
 export default function MovieOutDoor({ banner, title, id }) {
-
     return (
         <Link to={`/sessoes/${id}`}>
             <Outdoor >
@@ -25,10 +24,8 @@ const Outdoor = styled.div`
     margin:10px;
 
     img{
-        
         width:100%;
     }
 
     cursor: pointer;
-
 `

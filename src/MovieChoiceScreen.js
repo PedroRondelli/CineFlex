@@ -1,9 +1,7 @@
+import styled from "styled-components"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import styled from "styled-components"
 import MovieOutDoor from "./MovieOutDoor"
-
-
 
 export default function MovieChoiceScreen() {
     const [receivedMovies, setReceivedMovies] = useState([])
@@ -13,7 +11,6 @@ export default function MovieChoiceScreen() {
         promise.then((resp) => {
             setReceivedMovies(resp.data)
         })
-
     }, [])
 
     return (
@@ -48,6 +45,6 @@ const SelectYourMovie = styled.p`
     font-weight: 400;
     line-height: 28px;
     letter-spacing: 0.04em;
-    margin: 50px 0;
 
+    margin: 50px 0;
 `
