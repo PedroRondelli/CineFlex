@@ -1,6 +1,6 @@
 import GlobalStyle from './globalstyled';
 import styled from 'styled-components';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import MovieChoiceScreen from './MovieChoiceScreen';
 import SessionsScreen from './SessionsScreen';
 import ChairsScreen from './ChairsScreen';
@@ -9,7 +9,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <ScreenContainer>
-                <Header><h1>CINEFLEX</h1></Header>
+                <Link to={"/"}><Header><h1>CINEFLEX</h1></Header></Link>
                 <Routes>
                    <Route path="/" element={<MovieChoiceScreen />}/>
                    <Route path="/sessoes/:idFilme" element={<SessionsScreen />}/>
@@ -45,7 +45,6 @@ const Header = styled.div`
 
 
 `;
-
 const ScreenContainer = styled.div`
     width: 100vw;
     min-height: 100vh;
