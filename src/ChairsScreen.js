@@ -68,7 +68,7 @@ export default function ChairsScreen({ reservation, setReservation, setInformati
         <>
             <SelectYourSeat>{"Selecione o(s) assento(s)"}</SelectYourSeat>
             <SeatsPanel>
-                {session.seats.map((s) => <IndividualSeat setSeats={setSeats} selectedSeats={selectedSeats} key={s.id} avaible={s.isAvailable} id={s.id} name={s.name} />)}
+                {session.seats.map((s) => <IndividualSeat finalInformation={finalInformation} setInformation={setInformation} setSeats={setSeats} selectedSeats={selectedSeats} key={s.id} avaible={s.isAvailable} id={s.id} name={s.name} />)}
                 <ColorLegend>
                     {LegendSeats.map((l) =>
                         <ItemOfLegend>

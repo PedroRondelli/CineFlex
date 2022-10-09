@@ -1,24 +1,26 @@
 import styled from "styled-components"
 
-export default function SucessScreen() {
+export default function SucessScreen({finalInformation,reservation}) {
+    
+    
+    
     return (
         <>
             <SuccessfulOrder><p>Pedido feito</p><p>com sucesso!</p></SuccessfulOrder>
             <Ticket>
                 <div>
                     <strong>Filme e sessão</strong>
-                    <p>titulo do filme</p>
-                    <p>data hora</p>
+                    <p>{finalInformation.title}</p>
+                    <p>{`${finalInformation.date} ${finalInformation.hour}`}</p>
                 </div>
                 <div>
                     <strong>Ingressos</strong>
-                    <p>Assento numerodacadeira </p>
-                    <p>Assento numerodacadeira</p>
+                    {finalInformation.seats.map((s)=><p>{`Assento ${s}`}</p>)}
                 </div>
                 <div>
                     <strong>Comprador</strong>
-                    <p>Nome: nome</p>
-                    <p>CPF: cpf formatado</p>
+                    <p>Nome: {reservation.name}</p>
+                    <p>CPF: {reservation.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</p>
                 </div>
             </Ticket>
             <BackToHome>Voltar pra Home</BackToHome>

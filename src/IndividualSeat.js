@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function IndividualSeat({id,name,avaible,setSeats,selectedSeats}) {
+export default function IndividualSeat({id,name,avaible,setSeats,selectedSeats,setInformation,finalInformation}) {
     const [selected, setSelected] = useState(false)
 
     function witchColor(availability){
@@ -22,11 +22,14 @@ export default function IndividualSeat({id,name,avaible,setSeats,selectedSeats})
             const novoArray=[...selectedSeats,id]
             console.log(novoArray)
             setSeats(novoArray)
+            setInformation({...finalInformation,seats:[...finalInformation.seats,name]})
         }else{
             setSelected(false)
             const novoArray = selectedSeats.filter((e)=> e!== id)
             console.log(novoArray)
             setSeats(novoArray)
+            const newSeatsArray= finalInformation.seats.filter((s)=> s!== name)
+            setInformation({...finalInformation,seats:newSeatsArray})
         }
         
     }

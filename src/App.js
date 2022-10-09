@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 export default function App() {
     const [reservation, setReservation] = useState({ ids: [], name: "", cpf: "" })
-    const [finalInformation, setInformation] = useState({ title: "", date: "", hour: "" })
+    const [finalInformation, setInformation] = useState({ title: "", date: "", hour: "",seats:[] })
 
     return (
         <BrowserRouter>
