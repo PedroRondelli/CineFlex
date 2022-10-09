@@ -1,8 +1,17 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SucessScreen({finalInformation,reservation}) {
-    
-    
+export default function SucessScreen({finalInformation,reservation,setReservation,setInformation}) {
+
+    let navigate=useNavigate()
+
+    function restartOrder() {
+        const objetobase= { ids: [], name: "", cpf: "" }
+        const objetobase2={ title: "", date: "", hour: "",seats:[] }
+        setReservation(objetobase)
+        setInformation(objetobase2)
+        navigate("/")
+    }
     
     return (
         <>
@@ -23,7 +32,8 @@ export default function SucessScreen({finalInformation,reservation}) {
                     <p>CPF: {reservation.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</p>
                 </div>
             </Ticket>
-            <BackToHome>Voltar pra Home</BackToHome>
+            <BackToHome onClick={restartOrder} >Voltar pra Home</BackToHome>
+        
 
         </>
     )
@@ -50,6 +60,13 @@ const Ticket = styled.div`
 
     p{
         margin: 20px 0;
+        font-family: Roboto;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 0.04em;
+
+
     }
     
     div{
