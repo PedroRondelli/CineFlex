@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import {  useNavigate,  useParams } from "react-router-dom"
 import styled from "styled-components"
 import IndividualSeat from "./IndividualSeat"
 
@@ -25,6 +25,9 @@ export default function ChairsScreen({ reservation, setReservation, setInformati
         console.log(event.target.value)
         setBuyerName(event.target.value)
     }
+    let navigate= useNavigate()
+
+    
 
     function reserve() {
         const choiceWasMade = selectedSeats.length > 0
@@ -41,7 +44,7 @@ export default function ChairsScreen({ reservation, setReservation, setInformati
                 console.log("Foi")
                 setInformation(novoObject2)
                 setReservation(novoObject)
-                
+                navigate('/sucesso')
             })
 
         } else {
