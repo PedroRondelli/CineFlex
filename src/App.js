@@ -26,7 +26,7 @@ export default function App() {
                             setInformation={setInformation}
                         />
                     } />
-                    <Route path='/sucesso' element={<SucessScreen />} />
+                    <Route path='/sucesso' element={<SucessScreen finalInformation={finalInformation} reservation={reservation} />} />
                 </Routes>
             </ScreenContainer>
             <GlobalStyle />

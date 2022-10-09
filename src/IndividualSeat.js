@@ -19,12 +19,12 @@ export default function IndividualSeat({id,name,avaible,setSeats,selectedSeats})
     function selection() {
         if(!selected && avaible){
             setSelected(true)
-            const novoArray=[...selectedSeats,name]
+            const novoArray=[...selectedSeats,id]
             console.log(novoArray)
             setSeats(novoArray)
         }else{
             setSelected(false)
-            const novoArray = selectedSeats.filter((e)=> e!==name)
+            const novoArray = selectedSeats.filter((e)=> e!== id)
             console.log(novoArray)
             setSeats(novoArray)
         }

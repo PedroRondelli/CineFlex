@@ -9,7 +9,7 @@ const LegendSeats = [
     { color: "1", avaible: true, text: "Disponível" },
     { color: "2", avaible: false, text: "Indisponível" }]
 
-export default function ChairsScreen({ reservation, setReservation,setInformation,finalInformation}) {
+export default function ChairsScreen({ reservation, setReservation, setInformation, finalInformation }) {
     const { idSessao } = useParams()
     const [session, setSession] = useState([])
     const [cpf, setCpf] = useState("")
@@ -31,11 +31,21 @@ export default function ChairsScreen({ reservation, setReservation,setInformatio
         const nameWasWritten = buyerName !== ""
         const cpfWasWritten = cpf.length === 11
         if (choiceWasMade && nameWasWritten && cpfWasWritten) {
+            console.log(selectedSeats)
+            console.log(buyerName)
+            console.log(cpf)
             const novoObject = { ...reservation, ids: selectedSeats, name: buyerName, cpf: cpf }
-            console.log(novoObject)
-            setReservation(novoObject)
-        }else{
-          alert("Dados incorretos")    
+            const promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", novoObject)
+            promise.then(() => {
+                const novoObject2 = { ...finalInformation, title: session.movie.title, date: session.day.date, hour: session.name }
+                console.log("Foi")
+                setInformation(novoObject2)
+                setReservation(novoObject)
+                
+            })
+
+        } else {
+            alert("Dados incorretos")
         }
     }
 
