@@ -4,16 +4,29 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import MovieChoiceScreen from './MovieChoiceScreen';
 import SessionsScreen from './SessionsScreen';
 import ChairsScreen from './ChairsScreen';
+import SucessScreen from './SucessScreen'
+import { useState } from 'react';
 
 export default function App() {
+    const [reservation, setReservation] = useState({ ids: [], name: "", cpf: "" })
+    const [finalInformation, setInformation] = useState({ title: "", date: "", hour: "" })
+
     return (
         <BrowserRouter>
             <ScreenContainer>
                 <Link to={"/"}><Header><h1>CINEFLEX</h1></Header></Link>
                 <Routes>
-                   <Route path="/" element={<MovieChoiceScreen />}/>
-                   <Route path="/sessoes/:idFilme" element={<SessionsScreen />}/>
-                   <Route path="/assentos/:idSessao" element={<ChairsScreen/>}/>
+                    <Route path="/" element={<MovieChoiceScreen />} />
+                    <Route path="/sessoes/:idFilme" element={<SessionsScreen />} />
+                    <Route path="/assentos/:idSessao" element={
+                        <ChairsScreen
+                            reservation={reservation}
+                            setReservation={setReservation}
+                            finalInformation={finalInformation}
+                            setInformation={setInformation}
+                        />
+                    } />
+                    <Route path='/sucesso' element={<SucessScreen />} />
                 </Routes>
             </ScreenContainer>
             <GlobalStyle />

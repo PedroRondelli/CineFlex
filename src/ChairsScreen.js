@@ -9,10 +9,35 @@ const LegendSeats = [
     { color: "1", avaible: true, text: "Disponível" },
     { color: "2", avaible: false, text: "Indisponível" }]
 
-export default function ChairsScreen() {
+export default function ChairsScreen({ reservation, setReservation,setInformation,finalInformation}) {
     const { idSessao } = useParams()
     const [session, setSession] = useState([])
+    const [cpf, setCpf] = useState("")
+    const [buyerName, setBuyerName] = useState("")
+    const [selectedSeats, setSeats] = useState([])
 
+    function changeCpf(event) {
+        console.log(event.target.value)
+        setCpf(event.target.value)
+    }
+
+    function changeBuyerName(event) {
+        console.log(event.target.value)
+        setBuyerName(event.target.value)
+    }
+
+    function reserve() {
+        const choiceWasMade = selectedSeats.length > 0
+        const nameWasWritten = buyerName !== ""
+        const cpfWasWritten = cpf.length === 11
+        if (choiceWasMade && nameWasWritten && cpfWasWritten) {
+            const novoObject = { ...reservation, ids: selectedSeats, name: buyerName, cpf: cpf }
+            console.log(novoObject)
+            setReservation(novoObject)
+        }else{
+          alert("Dados incorretos")    
+        }
+    }
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`)
@@ -30,7 +55,7 @@ export default function ChairsScreen() {
         <>
             <SelectYourSeat>{"Selecione o(s) assento(s)"}</SelectYourSeat>
             <SeatsPanel>
-                {session.seats.map((s) => <IndividualSeat key={s.id} avaible={s.isAvailable} id={s.id} name={s.name} />)}
+                {session.seats.map((s) => <IndividualSeat setSeats={setSeats} selectedSeats={selectedSeats} key={s.id} avaible={s.isAvailable} id={s.id} name={s.name} />)}
                 <ColorLegend>
                     {LegendSeats.map((l) =>
                         <ItemOfLegend>
@@ -40,12 +65,14 @@ export default function ChairsScreen() {
                 </ColorLegend>
             </SeatsPanel>
             <UserDataInputs>
-                <label>{"Nome do Comprador:"}</label>
-                <input placeholder="Digite seu nome..."></input>
-                <label>{"CPF do Comprador:"}</label>
-                <input placeholder="Digite seu CPF..."></input>
+                <form>
+                    <label htmlFor="nome" >{"Nome do Comprador:"}</label>
+                    <input value={buyerName} onChange={(event) => changeBuyerName(event)} id="nome" placeholder="Digite seu nome..."></input>
+                    <label htmlFor="CPF">{"CPF do Comprador:"}</label>
+                    <input value={cpf} onChange={(event) => changeCpf(event)} id="CPF" placeholder="Digite seu CPF..."></input>
+                </form>
             </UserDataInputs>
-            <SubmitButton>
+            <SubmitButton onClick={reserve}>
                 <p>{"Reservar assento(s)"}</p>
             </SubmitButton>
             <Footer2>
@@ -126,6 +153,11 @@ const UserDataInputs = styled.div`
 
         }
     }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
     
 `
 const SubmitButton = styled.div`
@@ -143,6 +175,7 @@ const SubmitButton = styled.div`
     letter-spacing: 0.04em;
     color:white;
     margin-bottom: 117px;
+    cursor: pointer;
 
 `
 const Footer2 = styled.div`
