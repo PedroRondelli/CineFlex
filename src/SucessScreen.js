@@ -12,6 +12,14 @@ export default function SucessScreen({finalScreenInformation,reservation,setRese
         setInformation(resetbuyerinformation)
         navigate("/")
     }
+
+    if(finalScreenInformation.title===""){
+        const resetresevation= { ids: [], name: "", cpf: "" }
+        const resetbuyerinformation={ title: "", date: "", hour: "",seats:[] }
+        setReservation(resetresevation)
+        setInformation(resetbuyerinformation)
+        navigate("/")
+    }
     
     return (
         <>
