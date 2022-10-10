@@ -1,15 +1,16 @@
 import GlobalStyle from './globalstyled';
 import styled from 'styled-components';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { useState } from 'react';
 import MovieChoiceScreen from './MovieChoiceScreen';
 import SessionsScreen from './SessionsScreen';
 import ChairsScreen from './ChairsScreen';
 import SucessScreen from './SucessScreen'
-import { useState } from 'react';
 
 export default function App() {
+    
     const [reservation, setReservation] = useState({ ids: [], name: "", cpf: "" })
-    const [finalInformation, setInformation] = useState({ title: "", date: "", hour: "",seats:[] })
+    const [finalScreenInformation, setInformation] = useState({ title: "", date: "", hour: "",seats:[] })
 
     return (
         <BrowserRouter>
@@ -22,11 +23,11 @@ export default function App() {
                         <ChairsScreen
                             reservation={reservation}
                             setReservation={setReservation}
-                            finalInformation={finalInformation}
+                            finalScreenInformation={finalScreenInformation}
                             setInformation={setInformation}
                         />
                     } />
-                    <Route path='/sucesso' element={<SucessScreen setReservation={setReservation} setInformation={setInformation} finalInformation={finalInformation} reservation={reservation} />} />
+                    <Route path='/sucesso' element={<SucessScreen setReservation={setReservation} setInformation={setInformation} finalScreenInformation={finalScreenInformation} reservation={reservation} />} />
                 </Routes>
             </ScreenContainer>
             <GlobalStyle />

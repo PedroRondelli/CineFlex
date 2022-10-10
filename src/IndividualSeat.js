@@ -1,7 +1,7 @@
-import { useState } from "react"
 import styled from "styled-components"
+import { useState } from "react"
 
-export default function IndividualSeat({id,name,avaible,setSeats,selectedSeats,setInformation,finalInformation}) {
+export default function IndividualSeat({id,name,avaible,setSeats,selectedSeats,setInformation,finalScreenInformation}) {
     const [selected, setSelected] = useState(false)
 
     function witchColor(availability){
@@ -19,23 +19,21 @@ export default function IndividualSeat({id,name,avaible,setSeats,selectedSeats,s
     function selection() {
         if(!selected && avaible){
             setSelected(true)
-            const novoArray=[...selectedSeats,id]
-            console.log(novoArray)
-            setSeats(novoArray)
-            setInformation({...finalInformation,seats:[...finalInformation.seats,name]})
+            const currentlySelected=[...selectedSeats,id]
+            setSeats(currentlySelected)
+            setInformation({...finalScreenInformation,seats:[...finalScreenInformation.seats,name]})
         }else{
             setSelected(false)
-            const novoArray = selectedSeats.filter((e)=> e!== id)
-            console.log(novoArray)
-            setSeats(novoArray)
-            const newSeatsArray= finalInformation.seats.filter((s)=> s!== name)
-            setInformation({...finalInformation,seats:newSeatsArray})
+            const currentlySelected = selectedSeats.filter((e)=> e!== id)
+            setSeats(currentlySelected)
+            const newSeatsArray= finalScreenInformation.seats.filter((s)=> s!== name)
+            setInformation({...finalScreenInformation,seats:newSeatsArray})
         }
         
     }
 
     return(
-        <Seat onClick={selection} id={id} color={()=>witchColor(avaible)}>{name}</Seat>
+        <Seat data-identifier="seat" onClick={selection} id={id} color={()=>witchColor(avaible)}>{name}</Seat>
     )
 }
 
@@ -46,11 +44,9 @@ const Seat = styled.div`
 
     height: 26px;
     width: 26px;
-
     margin: 4px;
    
     background-color: ${(props)=>props.color};
-
     border-radius: 12px;
     border: 1px solid #808F9D;
 

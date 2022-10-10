@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import MovieOutDoor from "./MovieOutDoor"
 
 export default function MovieChoiceScreen() {
+
     const [receivedMovies, setReceivedMovies] = useState([])
 
     useEffect(() => {
@@ -15,19 +16,19 @@ export default function MovieChoiceScreen() {
 
     return (
         <>
-        <SelectYourMovie>Selecione o filme</SelectYourMovie>
-        <MoviesScroll>
-            {receivedMovies.map((objectOfMovie) => {
-                return (
-                    <MovieOutDoor
-                        key={objectOfMovie.id}
-                        banner={objectOfMovie.posterURL}
-                        title={objectOfMovie.title}
-                        id={objectOfMovie.id}
-                    />
-                )
-            })}
-        </MoviesScroll>
+            <SelectYourMovie >Selecione o filme</SelectYourMovie>
+            <MoviesScroll>
+                {receivedMovies.map((objectOfMovie) => {
+                    return (
+                        <MovieOutDoor
+                            key={objectOfMovie.id}
+                            banner={objectOfMovie.posterURL}
+                            title={objectOfMovie.title}
+                            id={objectOfMovie.id}
+                        />
+                    )
+                })}
+            </MoviesScroll>
         </>
     )
 }

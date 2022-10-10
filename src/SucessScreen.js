@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
 
-export default function SucessScreen({finalInformation,reservation,setReservation,setInformation}) {
+export default function SucessScreen({finalScreenInformation,reservation,setReservation,setInformation}) {
 
     let navigate=useNavigate()
 
     function restartOrder() {
-        const objetobase= { ids: [], name: "", cpf: "" }
-        const objetobase2={ title: "", date: "", hour: "",seats:[] }
-        setReservation(objetobase)
-        setInformation(objetobase2)
+        const resetresevation= { ids: [], name: "", cpf: "" }
+        const resetbuyerinformation={ title: "", date: "", hour: "",seats:[] }
+        setReservation(resetresevation)
+        setInformation(resetbuyerinformation)
         navigate("/")
     }
     
@@ -19,22 +19,20 @@ export default function SucessScreen({finalInformation,reservation,setReservatio
             <Ticket>
                 <div>
                     <strong>Filme e sessão</strong>
-                    <p>{finalInformation.title}</p>
-                    <p>{`${finalInformation.date} ${finalInformation.hour}`}</p>
+                    <p data-identifier="movie-session-infos-reserve-finished">{finalScreenInformation.title}</p>
+                    <p data-identifier="movie-session-infos-reserve-finished">{`${finalScreenInformation.date} ${finalScreenInformation.hour}`}</p>
                 </div>
                 <div>
                     <strong>Ingressos</strong>
-                    {finalInformation.seats.map((s)=><p>{`Assento ${s}`}</p>)}
+                    {finalScreenInformation.seats.map((s)=><p data-identifier="seat-infos-reserve-finished">{`Assento ${s}`}</p>)}
                 </div>
                 <div>
                     <strong>Comprador</strong>
-                    <p>Nome: {reservation.name}</p>
-                    <p>CPF: {reservation.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</p>
+                    <p data-identifier="buyer-infos-reserve-finished">Nome: {reservation.name}</p>
+                    <p data-identifier="buyer-infos-reserve-finished">CPF: {reservation.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</p>
                 </div>
             </Ticket>
-            <BackToHome onClick={restartOrder} >Voltar pra Home</BackToHome>
-        
-
+            <BackToHome data-identifier="back-to-home-btn" onClick={restartOrder} >Voltar pra Home</BackToHome>
         </>
     )
 }
@@ -47,10 +45,8 @@ const SuccessfulOrder = styled.p`
     letter-spacing: 0.04em;
     color:#247a6b;
 
-    
     text-align: center;
     
-
     margin: 50px 0;
 `
 const Ticket = styled.div`
@@ -65,8 +61,6 @@ const Ticket = styled.div`
         font-weight: 400;
         line-height: 26px;
         letter-spacing: 0.04em;
-
-
     }
     
     div{
@@ -77,18 +71,22 @@ const Ticket = styled.div`
 const BackToHome = styled.div`
     height: 42px;
     width: 225px;
+    margin-bottom: 117px;
+
     border-radius: 3px;
     background-color: #E8833A;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     font-family: Roboto;
     font-size: 18px;
     font-weight: 400;
     line-height: 21px;
     letter-spacing: 0.04em;
     color:white;
-    margin-bottom: 117px;
+    
     cursor: pointer;
 
 `

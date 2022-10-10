@@ -5,11 +5,12 @@ export default function DaySessions({ id, date, showtimes, weekday, title }) {
     
     return (
         <>
-            <Day>{weekday}-{date}</Day>
+            <Day data-identifier="session-date" >{weekday} - {date}</Day>
             <Hours>
                 {showtimes.map((show) =>
                     <Link to={`/assentos/${show.id}`}>
                         <Session
+                            data-identifier="hour-minute-btn"
                             key={show.id}
                             id={show.id}
                         >{show.name}
@@ -38,12 +39,12 @@ const Hours = styled.div`
 
     a{
         text-decoration: none;
-    
     }
 `
 
 const Session = styled.div`
     background: #E8833A;
+    border-radius: 3px;
 
     font-family: Roboto;
     font-size: 18px;
@@ -56,8 +57,6 @@ const Session = styled.div`
     width: 82px;
     height: 43px;
     margin: 18px 8px 18px 8px;
-
-    border-radius: 3px;
 
     cursor:pointer;
 
